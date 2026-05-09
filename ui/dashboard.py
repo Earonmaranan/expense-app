@@ -196,8 +196,14 @@ class Dashboard(tk.Tk):
                   bg=CARD2, fg=TEXT, relief="flat", cursor="hand2",
                   activebackground=BORDER,
                   command=self._manage_categories,
-                  padx=10, pady=6).pack(side="left")
-
+                  padx=10, pady=6).pack(side="left", padx=(0, 8))
+        
+        tk.Button(btn_row, text="📊 Budgets",
+          font=(FONT, 9),
+          bg=CARD2, fg=YELLOW, relief="flat", cursor="hand2",
+          activebackground=BORDER,
+          command=self._open_budgets,
+          padx=10, pady=6).pack(side="left", padx=(8, 0))
     # ─── TRANSACTION LIST ─────────────────────────────────────
     def _build_transaction_list(self):
         frame = tk.Frame(self, bg=BG)
@@ -382,6 +388,10 @@ class Dashboard(tk.Tk):
 
     def _manage_categories(self):
         CategoryManager(self, self.profile_id, self.currency, self.refresh)
+        
+    def _open_budgets(self):
+        from ui.budgets import BudgetsScreen
+        BudgetsScreen(self, self.profile_id, self.currency) 
 
     # ─── MONTH NAV ────────────────────────────────────────────
     def _prev_month(self):
