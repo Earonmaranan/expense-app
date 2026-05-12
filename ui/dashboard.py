@@ -199,11 +199,18 @@ class Dashboard(tk.Tk):
                   padx=10, pady=6).pack(side="left", padx=(0, 8))
         
         tk.Button(btn_row, text="📊 Budgets",
-          font=(FONT, 9),
-          bg=CARD2, fg=YELLOW, relief="flat", cursor="hand2",
-          activebackground=BORDER,
-          command=self._open_budgets,
-          padx=10, pady=6).pack(side="left", padx=(8, 0))
+                  font=(FONT, 9),
+                  bg=CARD2, fg=YELLOW, relief="flat", cursor="hand2",
+                  activebackground=BORDER,
+                  command=self._open_budgets,
+                  padx=10, pady=6).pack(side="left", padx=(8, 0))
+
+        tk.Button(btn_row, text="📈 Charts",
+                  font=(FONT, 9),
+                  bg=CARD2, fg=BLUE, relief="flat", cursor="hand2",
+                  activebackground=BORDER,
+                  command=self._open_charts,
+                  padx=10, pady=6).pack(side="left", padx=(8, 0))
     # ─── TRANSACTION LIST ─────────────────────────────────────
     def _build_transaction_list(self):
         frame = tk.Frame(self, bg=BG)
@@ -391,7 +398,11 @@ class Dashboard(tk.Tk):
         
     def _open_budgets(self):
         from ui.budgets import BudgetsScreen
-        BudgetsScreen(self, self.profile_id, self.currency) 
+        BudgetsScreen(self, self.profile_id, self.currency)
+        
+    def _open_charts(self):
+        from ui.charts import ChartsScreen
+        ChartsScreen(self, self.profile_id, self.currency)
 
     # ─── MONTH NAV ────────────────────────────────────────────
     def _prev_month(self):
